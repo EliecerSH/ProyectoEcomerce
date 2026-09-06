@@ -30,6 +30,8 @@ spring:
         jwt:
           tenant-id: ${AZURE_TENANT_ID}
           client-id: ${AZURE_CLIENT_ID}
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS}
 
 logging:
   level:

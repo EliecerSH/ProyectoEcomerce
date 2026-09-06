@@ -24,12 +24,15 @@ public class SecurityConfig {
 
     private final String tenantId;
     private final String clientId;
+    private final List<String> allowedOrigins;
 
     public SecurityConfig(
             @Value("${spring.security.oauth2.resourceserver.jwt.tenant-id}") String tenantId,
-            @Value("${spring.security.oauth2.resourceserver.jwt.client-id}") String clientId) {
+            @Value("${spring.security.oauth2.resourceserver.jwt.client-id}") String clientId,
+            @Value("${cors.allowed-origins}") List<String> allowedOrigins) {
         this.tenantId = tenantId;
         this.clientId = clientId;
+        this.allowedOrigins = allowedOrigins;
     }
 
     @Bean
@@ -56,7 +59,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:3000"));
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
         configuration.setAllowCredentials(true);
