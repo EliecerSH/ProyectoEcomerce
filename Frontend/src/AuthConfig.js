@@ -1,5 +1,8 @@
-const clientId = import.meta.env.VITE_AZURE_CLIENT_ID || ;
-const tenantId = import.meta.env.VITE_AZURE_TENANT_ID || ;
+// src/AuthConfig.js
+// Configuración de autenticación (Azure AD / MSAL) y URLs de los microservicios.
+
+const clientId = import.meta.env.VITE_AZURE_CLIENT_ID || "449c58be-c791-478c-b8a5-ba5a79589f55";
+const tenantId = import.meta.env.VITE_AZURE_TENANT_ID || "e5372bf0-c5e3-4286-887c-79069f209c1f";
 const scope = import.meta.env.VITE_AZURE_SCOPE || `api://${clientId}/write-read`;
 
 export const msalConfig = {
@@ -16,19 +19,16 @@ export const msalConfig = {
 };
 
 export const loginRequest = {
-    scopes: ["User.Read"]
+    scopes: ["User.Read"],
 };
 
 export const apiRequest = {
-    scopes: [scope]
+    scopes: [scope],
 };
 
-// URLs de los Microservicios
+// URLs base de los microservicios (cada uno expone su propio prefijo /api/v1/...)
 export const ENDPOINTS = {
-    USUARIOS: import.meta.env.VITE_MS_USUARIOS_URL || "http://localhost:8081/api/v1",
+    USUARIOS: import.meta.env.VITE_MS_USUARIOS_URL || "http://localhost:8081/api/v1/usuarios",
     PRODUCTOS: import.meta.env.VITE_MS_PRODUCTOS_URL || "http://localhost:8082/api/v1/productos",
-    CARRITO: import.meta.env.VITE_MS_CARRITO_URL || "http://localhost:8083/api/v1/carrito"
+    CARRITO: import.meta.env.VITE_MS_CARRITO_URL || "http://localhost:8083/api/v1/carrito",
 };
-
-// Agrega esta línea al final de src/AuthConfig.js:
-export const API_BASE_URL = ENDPOINTS.USUARIOS;
