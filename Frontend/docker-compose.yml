@@ -1,0 +1,19 @@
+services:
+  ecommerce-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_AZURE_CLIENT_ID: ${VITE_AZURE_CLIENT_ID}
+        VITE_AZURE_TENANT_ID: ${VITE_AZURE_TENANT_ID}
+        VITE_AZURE_SCOPE: ${VITE_AZURE_SCOPE}
+        VITE_MS_USUARIOS_URL: ${VITE_MS_USUARIOS_URL}
+        VITE_MS_PRODUCTOS_URL: ${VITE_MS_PRODUCTOS_URL}
+        VITE_MS_CARRITO_URL: ${VITE_MS_CARRITO_URL}
+    container_name: ecommerce-frontend
+    ports:
+      - "5173:80"
+
+networks:
+  ecommerce-network:
+    external: true
