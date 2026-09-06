@@ -6,10 +6,14 @@ spring:
     name: ms-carrito
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/usuarios_db
-    username: admin
-    password: admin123
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
+  productos:
+    service:
+      url: ${PRODUCTOS_SERVICE_URL}
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -24,8 +28,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          tenant-id: e5372bf0-c5e3-4286-887c-79069f209c1f
-          client-id: c4dba118-062a-49e8-a1d9-ae2ee29e7716
+          tenant-id: ${AZURE_TENANT_ID}
+          client-id: ${AZURE_CLIENT_ID}
 
 logging:
   level:

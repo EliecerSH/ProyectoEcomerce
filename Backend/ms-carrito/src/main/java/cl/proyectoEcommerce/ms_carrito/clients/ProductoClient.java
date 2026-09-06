@@ -16,7 +16,7 @@ public class ProductoClient {
 
     public ProductoClient(
             RestClient.Builder restClientBuilder,
-            @Value("${app.services.productos-url:http://localhost:8082}") String productosUrl) {
+            @Value("${spring.productos.service.url}") String productosUrl) {
         this.restClient = restClientBuilder.baseUrl(productosUrl).build();
     }
 
